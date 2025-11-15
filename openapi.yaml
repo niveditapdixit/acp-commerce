@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: My AI Shop API
+  description: API for product discovery and checkout using Agentic Commerce Protocol
+  version: 1.0.0
+servers:
+  - url: https://yourdomain.com
+paths:
+  /products:
+    get:
+      summary: Get list of available products
+      operationId: getProducts
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+  /checkout:
+    post:
+      summary: Create a checkout order
+      operationId: createCheckout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          description: Checkout order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+        currency:
+          type: string
+        image_url:
+          type: string
+        availability:
+          type: string
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: string
+        product:
+          $ref: '#/components/schemas/Product'
+        quantity:
+          type: integer
+        total:
+          type: integer
+        currency:
+          type: string
+        status:
+          type: string
