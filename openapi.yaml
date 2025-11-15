@@ -4,7 +4,7 @@ info:
   description: API for product discovery and checkout using Agentic Commerce Protocol
   version: 1.0.0
 servers:
-  - url: https://yourdomain.com
+  - url: https://acp-commerce.onrender.com
 paths:
   /products:
     get:
